@@ -4,23 +4,24 @@
 #include "pch.h"
 #include <iostream>
 #include <SFML/Graphics.hpp>
-#include "GridManager.h"
+//#include "GridManager.h"
 #include "Player.h"
 
-int WIN_W = 1200, WIN_H = 800, ground = WIN_H - 40;
+int WIN_W = 1200, WIN_H = 600, ground = WIN_H - 40;
 float speedMulti = 2.0f;
 
 int main()
 {
-	Player player({ 30.0f, 90.0f }, sf::Color::White);
-	player.setPos({100, 7530});
+	Player player({ 90.0f, 25.0f }, { sf::Color::White });
+	player.setPos({100, 550});
 
+	/* TEST CODE
 	sf::RectangleShape playerRect;
 	playerRect.setSize(sf::Vector2f(90.0f, 20.0f));
 	playerRect.setFillColor(sf::Color::White);
 	playerRect.setOutlineThickness(1);
 	playerRect.setPosition(sf::Vector2f(100, 750));
-
+*/
 	sf::RenderWindow window(sf::VideoMode(WIN_W, WIN_H), "SFML works!");
 
 	//sf::CircleShape shape(100.f);
@@ -32,14 +33,16 @@ int main()
 		//InputChecks
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
 		{
-			std::cout << "Right Repsonse \n";
+			//std::cout << "Right Repsonse \n";
 			playerRect.move(1 * speedMulti, 0);
+			player.Move({1 * speedMulti, 0});
 		}
 
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
 		{
-			std::cout << "Left Response \n";
+			//std::cout << "Left Response \n";
 			playerRect.move(-1 * speedMulti, 0);
+			player.Move({ -1 * speedMulti, 0 });
 		}
 
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
