@@ -27,7 +27,7 @@ int main()
 	{
 		for (int y = 0; y < 30; y++)
 		{
-			grid[x * 20+ y].Spawn(10 * x, 5 * y);
+			grid[x * 20+ y].Spawn(35 * x, 20 * y);
 		}
 	}
 
