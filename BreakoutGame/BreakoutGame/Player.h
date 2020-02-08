@@ -26,6 +26,22 @@ public:
 		player.setPosition(newPos);
 	}
 
+	int getWidth()
+	{
+		return player.getSize().x + 5;
+	}
+
+	int getX()
+	{
+		return player.getPosition().x;
+	}
+
+	int getY()
+	{
+		return player.getPosition().y;
+	}
+
+
 private:
 	sf::RectangleShape player;
 };

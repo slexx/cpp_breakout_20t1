@@ -1,4 +1,6 @@
 #pragma once
+#include <SFML/Graphics.hpp>
+
 
 class GridCreate {
 public:
@@ -11,9 +13,10 @@ public:
 
 		sf::RectangleShape newRect;
 		rect = newRect;
-		rect.setSize(sf::Vector2f(32.0f, 32.0f));
+		rect.setSize(sf::Vector2f(35.0f, 25.0f));
 		rect.setFillColor(sf::Color::White);
 		rect.setOutlineThickness(1);
+		rect.setOutlineColor(sf::Color::Green);
 
 		posX = x;
 		posY = y;

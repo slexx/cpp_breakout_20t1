@@ -1,2 +1,19 @@
 ﻿  BreakoutGame.cpp
+C:\AA_Class_Files\cpp_breakout_20t1\BreakoutGame\BreakoutGame\GridManager.h(23,26): warning C4244:  'argument': conversion from 'int' to 'float', possible loss of data
+C:\AA_Class_Files\cpp_breakout_20t1\BreakoutGame\BreakoutGame\GridManager.h(23,20): warning C4244:  'argument': conversion from 'int' to 'float', possible loss of data
+C:\AA_Class_Files\cpp_breakout_20t1\BreakoutGame\BreakoutGame\Player.h(31,29): warning C4244:  'return': conversion from 'T' to 'int', possible loss of data
+C:\AA_Class_Files\cpp_breakout_20t1\BreakoutGame\BreakoutGame\Player.h(31,29): warning C4244:         with
+C:\AA_Class_Files\cpp_breakout_20t1\BreakoutGame\BreakoutGame\Player.h(31,29): warning C4244:         [
+C:\AA_Class_Files\cpp_breakout_20t1\BreakoutGame\BreakoutGame\Player.h(31,29): warning C4244:             T=float
+C:\AA_Class_Files\cpp_breakout_20t1\BreakoutGame\BreakoutGame\Player.h(31,29): warning C4244:         ]
+C:\AA_Class_Files\cpp_breakout_20t1\BreakoutGame\BreakoutGame\Player.h(36,30): warning C4244:  'return': conversion from 'const T' to 'int', possible loss of data
+C:\AA_Class_Files\cpp_breakout_20t1\BreakoutGame\BreakoutGame\Player.h(36,30): warning C4244:         with
+C:\AA_Class_Files\cpp_breakout_20t1\BreakoutGame\BreakoutGame\Player.h(36,30): warning C4244:         [
+C:\AA_Class_Files\cpp_breakout_20t1\BreakoutGame\BreakoutGame\Player.h(36,30): warning C4244:             T=float
+C:\AA_Class_Files\cpp_breakout_20t1\BreakoutGame\BreakoutGame\Player.h(36,30): warning C4244:         ]
+C:\AA_Class_Files\cpp_breakout_20t1\BreakoutGame\BreakoutGame\Player.h(41,30): warning C4244:  'return': conversion from 'const T' to 'int', possible loss of data
+C:\AA_Class_Files\cpp_breakout_20t1\BreakoutGame\BreakoutGame\Player.h(41,30): warning C4244:         with
+C:\AA_Class_Files\cpp_breakout_20t1\BreakoutGame\BreakoutGame\Player.h(41,30): warning C4244:         [
+C:\AA_Class_Files\cpp_breakout_20t1\BreakoutGame\BreakoutGame\Player.h(41,30): warning C4244:             T=float
+C:\AA_Class_Files\cpp_breakout_20t1\BreakoutGame\BreakoutGame\Player.h(41,30): warning C4244:         ]
   BreakoutGame.vcxproj -> C:\AA_Class_Files\cpp_breakout_20t1\BreakoutGame\Debug\BreakoutGame.exe

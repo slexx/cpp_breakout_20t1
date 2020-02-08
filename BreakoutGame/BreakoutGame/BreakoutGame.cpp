@@ -4,10 +4,11 @@
 #include "pch.h"
 #include <iostream>
 #include <SFML/Graphics.hpp>
-//#include "GridManager.h"
+#include "GridManager.h"
 #include "Player.h"
 
 int WIN_W = 1200, WIN_H = 600, ground = WIN_H - 40;
+int gridX = 1200, gridY = 600;
 float speedMulti = 2.0f;
 
 int main()
@@ -15,14 +16,20 @@ int main()
 	Player player({ 90.0f, 25.0f }, { sf::Color::White });
 	player.setPos({100, 550});
 
-	/* TEST CODE
-	sf::RectangleShape playerRect;
-	playerRect.setSize(sf::Vector2f(90.0f, 20.0f));
-	playerRect.setFillColor(sf::Color::White);
-	playerRect.setOutlineThickness(1);
-	playerRect.setPosition(sf::Vector2f(100, 750));
-*/
+
+	GridCreate grid[600];
+	//grid.Spawn({ 10 }, {10});
+
 	sf::RenderWindow window(sf::VideoMode(WIN_W, WIN_H), "SFML works!");
+
+	//Grid - Spawn
+	for (int x = 0; x < 20; x++) //WHAT THE FRICK DOES IT WANT FROM ME?!
+	{
+		for (int y = 0; y < 30; y++)
+		{
+			grid[x * 20+ y].Spawn(10 * x, 5 * y);
+		}
+	}
 
 	//sf::CircleShape shape(100.f);
 	//shape.setFillColor(sf::Color::Green);
@@ -31,17 +38,17 @@ int main()
 	while (window.isOpen())
 	{
 		//InputChecks
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) && player.getX() < (WIN_W - player.getWidth()))
 		{
 			//std::cout << "Right Repsonse \n";
-			playerRect.move(1 * speedMulti, 0);
+			//playerRect.move(1 * speedMulti, 0);
 			player.Move({1 * speedMulti, 0});
 		}
 
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) && player.getX() > 5)
 		{
 			//std::cout << "Left Response \n";
-			playerRect.move(-1 * speedMulti, 0);
+			//playerRect.move(-1 * speedMulti, 0);
 			player.Move({ -1 * speedMulti, 0 });
 		}
 
@@ -49,7 +56,6 @@ int main()
 		{
 			window.close();
 		}
-
 
 		//Event Handler
 		sf::Event event;
@@ -70,11 +76,19 @@ int main()
 			}
 		}
 
+		
+
 		window.clear();
+
+		for (int i = 0; i < 600; i++)
+		{
+				window.draw(grid[i].rect);
+		}
 
 		//DRAW HERE
 		//window.draw(playerRect);
 		player.drawTo(window);
+		//window.draw(grid.rect);
 		window.display();
 	}
 
@@ -91,3 +105,11 @@ int main()
 //   4. Use the Error List window to view errors
 //   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
 //   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
+
+	/* TEST CODE
+	sf::RectangleShape playerRect;
+	playerRect.setSize(sf::Vector2f(90.0f, 20.0f));
+	playerRect.setFillColor(sf::Color::White);
+	playerRect.setOutlineThickness(1);
+	playerRect.setPosition(sf::Vector2f(100, 750));
+	*/
