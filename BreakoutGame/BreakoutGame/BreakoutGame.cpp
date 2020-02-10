@@ -22,12 +22,12 @@ int main()
 
 	sf::RenderWindow window(sf::VideoMode(WIN_W, WIN_H), "SFML works!");
 
-	//Grid - Spawn
+	//Grid - Spawn (Haigen)
 	for (int x = 0; x < 20; x++) //WHAT THE FRICK DOES IT WANT FROM ME?!
 	{
 		for (int y = 0; y < 30; y++)
 		{
-			grid[x * 20+ y].Spawn(35 * x, 20 * y);
+			grid[x * 20 + y].Spawn(35 * x, 20 * y);
 		}
 	}
 
