@@ -9,6 +9,7 @@
 
 int WIN_W = 1200, WIN_H = 600, ground = WIN_H - 40;
 int gridX = 1200, gridY = 600;
+const int gridLoopCount = 1400;
 float speedMulti = 2.0f;
 
 int main()
@@ -17,7 +18,7 @@ int main()
 	player.setPos({100, 550});
 
 
-	GridCreate grid[600];
+	GridCreate grid[gridLoopCount];
 	//grid.Spawn({ 10 }, {10});
 
 	sf::RenderWindow window(sf::VideoMode(WIN_W, WIN_H), "SFML works!");
@@ -25,9 +26,9 @@ int main()
 	//Grid - Spawn (Haigen)
 	for (int x = 0; x < 20; x++) //WHAT THE FRICK DOES IT WANT FROM ME?!
 	{
-		for (int y = 0; y < 30; y++)
+		for (int y = 0; y < 45; y++)
 		{
-			grid[x * 20 + y].Spawn(35 * x, 20 * y);
+			grid[x * 20 + y].Spawn(35 * x, 25 * y);
 		}
 	}
 
@@ -80,7 +81,7 @@ int main()
 
 		window.clear();
 
-		for (int i = 0; i < 600; i++)
+		for (int i = 0; i < gridLoopCount; i++)
 		{
 				window.draw(grid[i].rect);
 		}
