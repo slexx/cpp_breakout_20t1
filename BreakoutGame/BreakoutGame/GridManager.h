@@ -13,8 +13,8 @@ public:
 
 		sf::RectangleShape newRect;
 		rect = newRect;
-		rect.setSize(sf::Vector2f(35.0f, 25.0f));
-		rect.setFillColor(sf::Color::White);
+		rect.setSize(sf::Vector2f(30.0f, 30.0f));
+		rect.setFillColor(sf::Color::Black);
 		rect.setOutlineThickness(1);
 		rect.setOutlineColor(sf::Color::Green);
 
