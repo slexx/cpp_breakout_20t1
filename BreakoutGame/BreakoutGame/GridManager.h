@@ -5,7 +5,7 @@
 class GridCreate {
 public:
 	int posX = 0, posY = 0;
-	int type = 0, maxType = 2;
+	int type = 0, maxType = 1;
 	sf::RectangleShape rect;
 
 	void Spawn(int x, int y) 

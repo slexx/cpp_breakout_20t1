@@ -22,6 +22,7 @@ int main()
 	//grid.Spawn({ 10 }, {10});
 
 	sf::RenderWindow window(sf::VideoMode(WIN_W, WIN_H), "SFML works!");
+	window.setFramerateLimit(60);
 
 	//Grid - Spawn (Haigen)
 	for (int x = 10; x < 30; x++) //ScreenW - BlockW / BlockW
@@ -38,26 +39,6 @@ int main()
 	
 	while (window.isOpen())
 	{
-		//InputChecks
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) && player.getX() < (WIN_W - player.getWidth()))
-		{
-			//std::cout << "Right Repsonse \n";
-			//playerRect.move(1 * speedMulti, 0);
-			player.Move({1 * speedMulti, 0});
-		}
-
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) && player.getX() > 5)
-		{
-			//std::cout << "Left Response \n";
-			//playerRect.move(-1 * speedMulti, 0);
-			player.Move({ -1 * speedMulti, 0 });
-		}
-
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
-		{
-			window.close();
-		}
-
 		//Event Handler
 		sf::Event event;
 		while (window.pollEvent(event))
@@ -78,14 +59,65 @@ int main()
 			default:
 				break;
 			}
-		}
+		
+			//InputChecks
+
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
+			{
+				window.close();
+			}
+
+			if (event.type == sf::Event::MouseButtonReleased)
+			{
+				sf::Vector2i mousePos = sf::Mouse::getPosition(window);
+				sf::Vector2f mousePosF(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y));
+
+				for (int i = 0; i < gridLoopCount; i++)
+				{
+					if (grid[i].rect.getGlobalBounds().contains(mousePosF))
+					{
+						grid[i].ChangeType();
+					}
+				}
+			}
+		}//WhileEnd
+
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) && player.getX() < (WIN_W - player.getWidth()))
+			{
+				//std::cout << "Right Repsonse \n";
+				//playerRect.move(1 * speedMulti, 0);
+				player.Move({1 * speedMulti, 0});
+			}
+
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) && player.getX() > 5)
+			{
+				//std::cout << "Left Response \n";
+				//playerRect.move(-1 * speedMulti, 0);
+				player.Move({ -1 * speedMulti, 0 });
+			}
+
 
 		
 
 		window.clear();
 
+		/*for (int i = 0; i < gridLoopCount; i++)
+		{
+				window.draw(grid[i].rect);
+		}*/
+
 		for (int i = 0; i < gridLoopCount; i++)
 		{
+			switch (grid[i].type)
+			{
+			case 0:
+				grid[i].rect.setFillColor(sf::Color::Black);
+				break;
+			case 1:
+				grid[i].rect.setFillColor(sf::Color::White);
+				grid[i].rect.setOutlineColor(sf::Color::Black);
+				break;
+			}
 				window.draw(grid[i].rect);
 		}
 
