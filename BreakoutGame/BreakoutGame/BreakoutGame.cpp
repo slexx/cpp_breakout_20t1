@@ -112,6 +112,7 @@ int main()
 			{
 			case 0:
 				grid[i].rect.setFillColor(sf::Color::Black);
+				grid[i].rect.setOutlineColor(sf::Color::Green);
 				break;
 			case 1:
 				grid[i].rect.setFillColor(sf::Color::White);
