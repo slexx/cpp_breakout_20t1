@@ -24,11 +24,11 @@ int main()
 	sf::RenderWindow window(sf::VideoMode(WIN_W, WIN_H), "SFML works!");
 
 	//Grid - Spawn (Haigen)
-	for (int x = 0; x < 40; x++) //WHAT THE FRICK DOES IT WANT FROM ME?!
+	for (int x = 10; x < 30; x++) //ScreenW - BlockW / BlockW
 	{
-		for (int y = 0; y < 35; y++)
+		for (int y = 0; y < 10; y++)//ScreenH - BlockH / BlockH
 		{
-			grid[x * 20 + y].Spawn(30 * x, 30 * y);
+			grid[x * 30 + y].Spawn(30 * x, 30 * y);
 		}
 	}
 
@@ -72,6 +72,9 @@ int main()
 				//cout << "Pressed: " << event.key.code << "\n"; //This code outputs the keyCode for any pressed button to help determine the numbers without needing to google.
 
 				break;
+			case sf::Event::MouseButtonReleased: 
+					//cout << "Mouse Left Pressed";
+					break;
 			default:
 				break;
 			}
