@@ -26,26 +26,14 @@ int main()
 	window.setFramerateLimit(60);
 	border.Setup();
 
-	//Grid - Spawn (Haigen)
-	for (int x = 1; x < 16; x++) //ScreenW - BlockW / BlockW
+	//Grid - Spawn 
+	for (int x = 1; x < 16; x++) //ScreenW - BlockW / BlockW |<| to figure out how many fit
 	{
-		for (int y = 0; y < 10; y++)//ScreenH - BlockH / BlockH
+		for (int y = 0; y < 10; y++)//ScreenH - BlockH / BlockH |<| to figure out how many fit
 		{
 			grid[x * 30 + y].Spawn(60 * x, 30 * y);
 		}
 	}
-
-	/*sf::RectangleShape GameBorder;
-	GameBorder.setSize(sf::Vector2f(10.0f, 600.0f));
-	GameBorder.setPosition(1025, 1);
-	GameBorder.setFillColor(sf::Color::Black);
-	GameBorder.setOutlineThickness(1);
-	GameBorder.setOutlineColor(sf::Color::White);*/
-
-
-	//sf::CircleShape shape(100.f);
-	//shape.setFillColor(sf::Color::Green);
-	
 	
 	while (window.isOpen())
 	{
@@ -92,6 +80,7 @@ int main()
 			}
 		}//WhileEnd
 
+		//Inputs
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) && player.getX() < (border.rect.getPosition().x - player.getWidth() - 10))//(WIN_W - player.getWidth()))
 			{
 				//std::cout << "Right Repsonse \n";
@@ -99,7 +88,7 @@ int main()
 				player.Move({1 * speedMulti, 0});
 			}
 
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) && player.getX() > 5)
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) && player.getX() > 7)
 			{
 				//std::cout << "Left Response \n";
 				//playerRect.move(-1 * speedMulti, 0);
