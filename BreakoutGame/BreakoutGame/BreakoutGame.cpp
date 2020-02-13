@@ -10,7 +10,7 @@
 int WIN_W = 1200, WIN_H = 600, ground = WIN_H - 40;
 int gridX = 1200, gridY = 600;
 const int gridLoopCount = 2000;
-float speedMulti = 4.0f;
+float speedMulti = 8.0f;
 
 int main()
 {
@@ -19,19 +19,29 @@ int main()
 
 
 	GridCreate grid[gridLoopCount];
+	BorderSetup border;
 	//grid.Spawn({ 10 }, {10});
 
 	sf::RenderWindow window(sf::VideoMode(WIN_W, WIN_H), "SFML works!");
 	window.setFramerateLimit(60);
+	border.Setup();
 
 	//Grid - Spawn (Haigen)
-	for (int x = 10; x < 30; x++) //ScreenW - BlockW / BlockW
+	for (int x = 1; x < 16; x++) //ScreenW - BlockW / BlockW
 	{
 		for (int y = 0; y < 10; y++)//ScreenH - BlockH / BlockH
 		{
-			grid[x * 30 + y].Spawn(30 * x, 30 * y);
+			grid[x * 30 + y].Spawn(60 * x, 30 * y);
 		}
 	}
+
+	/*sf::RectangleShape GameBorder;
+	GameBorder.setSize(sf::Vector2f(10.0f, 600.0f));
+	GameBorder.setPosition(1025, 1);
+	GameBorder.setFillColor(sf::Color::Black);
+	GameBorder.setOutlineThickness(1);
+	GameBorder.setOutlineColor(sf::Color::White);*/
+
 
 	//sf::CircleShape shape(100.f);
 	//shape.setFillColor(sf::Color::Green);
@@ -82,7 +92,7 @@ int main()
 			}
 		}//WhileEnd
 
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) && player.getX() < (WIN_W - player.getWidth()))
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) && player.getX() < (border.rect.getPosition().x - player.getWidth() - 10))//(WIN_W - player.getWidth()))
 			{
 				//std::cout << "Right Repsonse \n";
 				//playerRect.move(1 * speedMulti, 0);
@@ -94,6 +104,12 @@ int main()
 				//std::cout << "Left Response \n";
 				//playerRect.move(-1 * speedMulti, 0);
 				player.Move({ -1 * speedMulti, 0 });
+			}
+
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::F))
+			{
+				BorderSetup border;
+				border.Setup();
 			}
 
 
@@ -125,6 +141,8 @@ int main()
 		//DRAW HERE
 		//window.draw(playerRect);
 		player.drawTo(window);
+		border.drawTo(window);
+		//window.draw(GameBorder);
 		//window.draw(grid.rect);
 		window.display();
 	}
