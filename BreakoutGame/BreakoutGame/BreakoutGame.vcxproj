@@ -162,6 +162,7 @@
     <ClInclude Include="OldPlayer.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="UI.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BreakoutGame.cpp" />

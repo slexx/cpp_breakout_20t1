@@ -6,6 +6,7 @@
 #include <SFML/Graphics.hpp>
 #include "GridManager.h"
 #include "Player.h"
+#include "UI.h"
 
 int WIN_W = 1200, WIN_H = 600, ground = WIN_H - 40;
 int gridX = 1200, gridY = 600;
@@ -14,6 +15,7 @@ float speedMulti = 8.0f;
 
 int main()
 {
+	UI interface;
 	Player player({ 90.0f, 25.0f }, { sf::Color::White });
 	player.setPos({100, 550});
 
@@ -129,6 +131,7 @@ int main()
 
 		//DRAW HERE
 		//window.draw(playerRect);
+		//interface.DrawText(window, 24, "Hello World!");
 		player.drawTo(window);
 		border.drawTo(window);
 		//window.draw(GameBorder);
