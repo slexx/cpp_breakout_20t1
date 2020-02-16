@@ -31,19 +31,4 @@ E:\Files\01__Code_Lounge\cpp_breakout_20t1\BreakoutGame\BreakoutGame\Player.h(41
           [
               T=float
           ]
-E:\Files\01__Code_Lounge\cpp_breakout_20t1\BreakoutGame\BreakoutGame\BreakoutGame.cpp(23,1): error C2678: binary '<': no operator found which takes a left-hand operand of type 'std::ostringstream' (or there is no acceptable conversion)
-E:\Files\01__Code_Lounge\cpp_breakout_20t1\BreakoutGame\BreakoutGame\BreakoutGame.cpp(23,1): message : could be 'built-in C++ operator<(int, T)'
-          with
-          [
-              T=int
-          ]
-E:\Files\01__Code_Lounge\cpp_breakout_20t1\BreakoutGame\BreakoutGame\BreakoutGame.cpp(23,1): message : while trying to match the argument list '(std::ostringstream, T)'
-          with
-          [
-              T=int
-          ]
-E:\Files\01__Code_Lounge\cpp_breakout_20t1\BreakoutGame\BreakoutGame\BreakoutGame.cpp(142): message : see reference to function template instantiation 'std::string toString<int>(T)' being compiled
-          with
-          [
-              T=int
-          ]
+  BreakoutGame.vcxproj -> E:\Files\01__Code_Lounge\cpp_breakout_20t1\BreakoutGame\Debug\BreakoutGame.exe

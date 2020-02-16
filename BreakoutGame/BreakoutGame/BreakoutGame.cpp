@@ -138,7 +138,7 @@ int main()
 
 		//DRAW HERE
 		//window.draw(playerRect);
-		interface.DrawText(window, 18, "Breakout Classic", {1040, 5});
+		interface.DrawText(window, 18, "Breakout Classic", {1040, 5}); //Border is at 1025x
 		interface.DrawText(window, 20, "Lives: " , { (1040), 25 });
 		player.drawTo(window);
 		border.drawTo(window);
