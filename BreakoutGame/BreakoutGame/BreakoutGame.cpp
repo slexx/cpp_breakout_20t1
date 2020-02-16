@@ -3,30 +3,42 @@
 
 #include "pch.h"
 #include <iostream>
+#include <sstream>
+#include <string>
 #include <SFML/Graphics.hpp>
 #include "GridManager.h"
 #include "Player.h"
 #include "UI.h"
 
-int WIN_W = 1200, WIN_H = 600, ground = WIN_H - 40;
+int WIN_W = 1200, WIN_H = 700, ground = WIN_H - 40;
 int gridX = 1200, gridY = 600;
+int lives = 5;
 const int gridLoopCount = 2000;
 float speedMulti = 8.0f;
 
+template <typename T>
+std::string toString(T arg)
+{
+	std::ostringstream ss;
+	ss < arg;
+	return ss.str();
+}
+
 int main()
 {
+	BorderSetup border;
+	border.Setup(WIN_H);
+
 	UI interface;
 	Player player({ 90.0f, 25.0f }, { sf::Color::White });
-	player.setPos({100, 550});
+	player.setPos({(border.getX()/2.0f - player.getWidth()), (WIN_H - 50.0f)});
 
 
 	GridCreate grid[gridLoopCount];
-	BorderSetup border;
 	//grid.Spawn({ 10 }, {10});
 
 	sf::RenderWindow window(sf::VideoMode(WIN_W, WIN_H), "SFML works!");
 	window.setFramerateLimit(60);
-	border.Setup();
 
 	//Grid - Spawn 
 	for (int x = 1; x < 16; x++) //ScreenW - BlockW / BlockW |<| to figure out how many fit
@@ -97,21 +109,16 @@ int main()
 				player.Move({ -1 * speedMulti, 0 });
 			}
 
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::F))
+			/*if (sf::Keyboard::isKeyPressed(sf::Keyboard::F))
 			{
 				BorderSetup border;
 				border.Setup();
-			}
+			}*/
 
 
 		
 
 		window.clear();
-
-		/*for (int i = 0; i < gridLoopCount; i++)
-		{
-				window.draw(grid[i].rect);
-		}*/
 
 		for (int i = 0; i < gridLoopCount; i++)
 		{
@@ -131,11 +138,10 @@ int main()
 
 		//DRAW HERE
 		//window.draw(playerRect);
-		//interface.DrawText(window, 24, "Hello World!");
+		interface.DrawText(window, 18, "Breakout Classic", {1040, 5});
+		interface.DrawText(window, 20, "Lives: " , { (1040), 25 });
 		player.drawTo(window);
 		border.drawTo(window);
-		//window.draw(GameBorder);
-		//window.draw(grid.rect);
 		window.display();
 	}
 

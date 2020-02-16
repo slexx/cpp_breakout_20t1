@@ -42,15 +42,25 @@ class BorderSetup {
 public:
 	sf::RectangleShape rect;
 
-	void Setup() {
+	void Setup(int yLength) {
 		//std::cout << "Test" << std::endl;
 		sf::RectangleShape border;
 		rect = border;
-		rect.setSize(sf::Vector2f(10.0f, 600.0f));
+		rect.setSize(sf::Vector2f(10.0f, yLength));
 		rect.setPosition(1025, 1);
 		rect.setFillColor(sf::Color::Black);
 		rect.setOutlineThickness(1);
 		rect.setOutlineColor(sf::Color::White);
+	}
+
+	int getX()
+	{
+		return rect.getPosition().x;
+	}
+
+	int getY()
+	{
+		return rect.getPosition().y;
 	}
 
 	void drawTo(sf::RenderWindow& window)
