@@ -1,5 +1,4 @@
-﻿  pch.cpp
-  BreakoutGame.cpp
+﻿  BreakoutGame.cpp
 C:\AA_Class_Files\cpp_breakout_20t1\BreakoutGame\BreakoutGame\GridManager.h(23,26): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
 C:\AA_Class_Files\cpp_breakout_20t1\BreakoutGame\BreakoutGame\GridManager.h(23,20): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
 C:\AA_Class_Files\cpp_breakout_20t1\BreakoutGame\BreakoutGame\GridManager.h(49,36): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
@@ -17,20 +16,24 @@ C:\AA_Class_Files\cpp_breakout_20t1\BreakoutGame\BreakoutGame\GridManager.h(63,2
           [
               T=float
           ]
-C:\AA_Class_Files\cpp_breakout_20t1\BreakoutGame\BreakoutGame\Player.h(31,29): warning C4244: 'return': conversion from 'T' to 'int', possible loss of data
+C:\AA_Class_Files\cpp_breakout_20t1\BreakoutGame\BreakoutGame\Player.h(33,29): warning C4244: 'return': conversion from 'T' to 'int', possible loss of data
           with
           [
               T=float
           ]
-C:\AA_Class_Files\cpp_breakout_20t1\BreakoutGame\BreakoutGame\Player.h(36,30): warning C4244: 'return': conversion from 'const T' to 'int', possible loss of data
+C:\AA_Class_Files\cpp_breakout_20t1\BreakoutGame\BreakoutGame\Player.h(46,30): warning C4244: 'return': conversion from 'const T' to 'int', possible loss of data
           with
           [
               T=float
           ]
-C:\AA_Class_Files\cpp_breakout_20t1\BreakoutGame\BreakoutGame\Player.h(41,30): warning C4244: 'return': conversion from 'const T' to 'int', possible loss of data
+C:\AA_Class_Files\cpp_breakout_20t1\BreakoutGame\BreakoutGame\Player.h(51,30): warning C4244: 'return': conversion from 'const T' to 'int', possible loss of data
           with
           [
               T=float
           ]
-  LINK : C:\AA_Class_Files\cpp_breakout_20t1\BreakoutGame\Debug\BreakoutGame.exe not found or not built by the last incremental link; performing full link
+C:\AA_Class_Files\cpp_breakout_20t1\BreakoutGame\BreakoutGame\BreakoutGame.cpp(39,31): warning C4244: '=': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
   BreakoutGame.vcxproj -> C:\AA_Class_Files\cpp_breakout_20t1\BreakoutGame\Debug\BreakoutGame.exe

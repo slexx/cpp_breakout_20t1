@@ -16,7 +16,7 @@ public:
 		rect.setSize(sf::Vector2f(60.0f, 30.0f));
 		rect.setFillColor(sf::Color::Black);
 		rect.setOutlineThickness(1);
-		rect.setOutlineColor(sf::Color::Green);
+		//rect.setOutlineColor(sf::Color::Green);
 
 		posX = x;
 		posY = y;
@@ -47,7 +47,7 @@ public:
 		sf::RectangleShape border;
 		rect = border;
 		rect.setSize(sf::Vector2f(10.0f, yLength));
-		rect.setPosition(1025, 1);
+		rect.setPosition(1040, 1);
 		rect.setFillColor(sf::Color::Black);
 		rect.setOutlineThickness(1);
 		rect.setOutlineColor(sf::Color::White);

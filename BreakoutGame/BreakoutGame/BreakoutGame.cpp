@@ -9,10 +9,12 @@
 #include "GridManager.h"
 #include "Player.h"
 #include "UI.h"
+#include "Ball.h"
 
 int WIN_W = 1200, WIN_H = 700, ground = WIN_H - 40;
 int gridX = 1200, gridY = 600;
 int lives = 5;
+int score = 0;
 const int gridLoopCount = 2000;
 float speedMulti = 8.0f;
 
@@ -31,8 +33,13 @@ int main()
 
 	UI interface;
 	Player player({ 90.0f, 25.0f }, { sf::Color::White });
-	player.setPos({(border.getX()/2.0f - player.getWidth()), (WIN_H - 50.0f)});
+	player.setPos({ (border.getX() / 2.0f - player.getWidth()), (WIN_H - 50.0f) });
 
+	Ball ball({ sf::Color::Green });
+	ball.ballVelocity.x = rand() % 10;
+	ball.ballVelocity.y = -5;
+
+	ball.setStartPos({player.getPosForBall()});
 
 	GridCreate grid[gridLoopCount];
 	//grid.Spawn({ 10 }, {10});
@@ -41,11 +48,11 @@ int main()
 	window.setFramerateLimit(60);
 
 	//Grid - Spawn 
-	for (int x = 1; x < 16; x++) //ScreenW - BlockW / BlockW |<| to figure out how many fit
+	for (int x = 0; x < 16; x++) //ScreenW - BlockW / BlockW |<| to figure out how many fit
 	{
 		for (int y = 0; y < 10; y++)//ScreenH - BlockH / BlockH |<| to figure out how many fit
 		{
-			grid[x * 30 + y].Spawn(60 * x, 30 * y);
+			grid[x * 30 + y].Spawn(65 * x, 35 * y);
 		}
 	}
 	
@@ -94,6 +101,52 @@ int main()
 			}
 		}//WhileEnd
 
+		//BallStuff
+		ball.ballShape.move(ball.ballVelocity);
+
+		if (ball.getPos().x > (border.getX() - 20)|| ball.getPos().x < 0)
+		{
+			ball.Bounce(1);
+		}
+
+		if (ball.getPos().y < 0)
+		{
+			ball.Bounce(0);
+		}
+
+		if (ball.getPos().y > (WIN_H - 20))
+		{
+			if (lives > 1)
+			{
+				lives -= 1;
+				ball.Bounce(0);
+			}
+			else
+			{
+				window.close();
+			}
+		}
+
+		//COLLISION - Player&Ball
+		if (player.player.getGlobalBounds().intersects(ball.ballShape.getGlobalBounds()))
+		{
+			ball.Bounce(0);
+		}
+
+		//COLLISION - Brick&Ball
+		for (int i = 0; i < 2000; i++)
+		{
+			if (grid[i].rect.getGlobalBounds().intersects(ball.ballShape.getGlobalBounds()) && grid[i].type != 1)
+			{
+				ball.Bounce(0);
+				score += 1;
+				ball.ballVelocity = ball.ballVelocity * 1.01f;
+				grid[i].ChangeType();
+				//If Score == max , end game
+			}
+		}
+
+
 		//Inputs
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) && player.getX() < (border.rect.getPosition().x - player.getWidth() - 10))//(WIN_W - player.getWidth()))
 			{
@@ -125,11 +178,11 @@ int main()
 			switch (grid[i].type)
 			{
 			case 0:
-				grid[i].rect.setFillColor(sf::Color::Black);
-				grid[i].rect.setOutlineColor(sf::Color::Green);
+				grid[i].rect.setFillColor(sf::Color::White);
+				grid[i].rect.setOutlineColor(sf::Color::White);
 				break;
 			case 1:
-				grid[i].rect.setFillColor(sf::Color::White);
+				grid[i].rect.setFillColor(sf::Color::Black);
 				grid[i].rect.setOutlineColor(sf::Color::Black);
 				break;
 			}
@@ -138,8 +191,10 @@ int main()
 
 		//DRAW HERE
 		//window.draw(playerRect);
-		interface.DrawText(window, 18, "Breakout Classic", {1040, 5}); //Border is at 1025x
-		interface.DrawText(window, 20, "Lives: ??" , { (1040), 25 });
+		interface.DrawText(window, 18, "Breakout Classic", { (border.rect.getPosition().x + 15.f), 5}); //Border is at 1025x
+		interface.DrawText(window, 20, "Lives: " + std::to_string(lives) , { (border.rect.getPosition().x + 15.f), 25 });
+		interface.DrawText(window, 20, "Score: " + std::to_string(score), { (border.rect.getPosition().x + 15.f), 45 });
+		ball.drawTo(window);
 		player.drawTo(window);
 		border.drawTo(window);
 		window.display();

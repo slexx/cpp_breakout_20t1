@@ -4,6 +4,8 @@
 class Player
 {
 public:
+	sf::RectangleShape player;
+
 	Player(sf::Vector2f size, sf::Color color)
 	{
 		player.setSize(size);//Sorted Width || Height
@@ -31,6 +33,14 @@ public:
 		return player.getSize().x + 5;
 	}
 
+	sf::Vector2f getPosForBall() {
+
+		float x = player.getPosition().x;
+		float y = player.getPosition().y - 50.f;
+		
+		return sf::Vector2f(x, y);
+	}
+
 	int getX()
 	{
 		return player.getPosition().x;
@@ -43,5 +53,4 @@ public:
 
 
 private:
-	sf::RectangleShape player;
 };
