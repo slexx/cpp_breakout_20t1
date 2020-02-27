@@ -12,23 +12,29 @@ public:
 		ballShape.setOutlineThickness(1);
 	}
 
-	void Bounce(int dir) {
-
+	void Bounce(int dir, sf::RectangleShape obj, sf::CircleShape ball) {
+		
+		int x = (obj.getPosition().x + obj.getSize().x / 2) - (ball.getPosition().x + ball.getRadius());
 
 		switch (dir)
 		{
 		case 0:
-			//Vertical
-			ballVelocity.y = -ballVelocity.y;
+			if (x > 0)
+			{
+				//right side
+				ballVelocity.y = -ballVelocity.y;
+				ballVelocity.x += 1;
+			}
+			else
+			{
+				//left side
+				ballVelocity.y = -ballVelocity.y;
+				ballVelocity.x -= 1;
+			}
+
 			break;
 		case 1:
 			//Horizontal
-			ballVelocity.x = -ballVelocity.x;
-			break;
-
-		case 2:
-			//Both
-			ballVelocity.y = -ballVelocity.y;
 			ballVelocity.x = -ballVelocity.x;
 			break;
 		}

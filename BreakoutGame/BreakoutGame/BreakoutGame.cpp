@@ -11,12 +11,15 @@
 #include "UI.h"
 #include "Ball.h"
 
+#pragma region Variables
 int WIN_W = 1200, WIN_H = 700, ground = WIN_H - 40;
 int gridX = 1200, gridY = 600;
 int lives = 5;
 int score = 0;
 const int gridLoopCount = 2000;
 float speedMulti = 8.0f;
+#pragma endregion
+
 
 template <typename T>
 std::string toString(T arg)
@@ -28,9 +31,11 @@ std::string toString(T arg)
 
 int main()
 {
+#pragma region Creation
 	BorderSetup border;
 	border.Setup(WIN_H);
-
+	invisibleWalls walls;
+	walls.GameBorder(WIN_W, WIN_H);
 	UI interface;
 	Player player({ 90.0f, 25.0f }, { sf::Color::White });
 	player.setPos({ (border.getX() / 2.0f - player.getWidth()), (WIN_H - 50.0f) });
@@ -55,7 +60,8 @@ int main()
 			grid[x * 30 + y].Spawn(65 * x, 35 * y);
 		}
 	}
-	
+
+#pragma endregion	
 	while (window.isOpen())
 	{
 		//Event Handler
@@ -78,7 +84,7 @@ int main()
 			default:
 				break;
 			}
-		
+#pragma region InputONCE
 			//InputChecks
 
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
@@ -99,38 +105,66 @@ int main()
 					}
 				}
 			}
+
+#pragma endregion
+
 		}//WhileEnd
 
+#pragma region BallCollision
 		//BallStuff
 		ball.ballShape.move(ball.ballVelocity);
 
-		if (ball.getPos().x > (border.getX() - 20)|| ball.getPos().x < 0)
+		////Horizontal
+		//if (ball.getPos().x > (border.getX() - 20)|| ball.getPos().x < 0)
+		//{
+		//	ball.Bounce(1);
+		//}
+
+		////Vertical1
+		//if (ball.getPos().y < 0)
+		//{
+		//	ball.Bounce(0);
+		//}
+		////vertical2
+		//if (ball.getPos().y > (WIN_H - 20))
+		//{
+		//	if (lives > 1)
+		//	{
+		//		lives -= 1;
+		//		ball.Bounce(0);
+		//	}
+		//	else
+		//	{
+		//		window.close();
+		//	}
+		//}
+
+		//COLLISION - HorizontalBarrier
+		if (walls.left.getGlobalBounds().intersects(ball.ballShape.getGlobalBounds()))
 		{
-			ball.Bounce(1);
+			ball.Bounce(1, walls.left, ball.ballShape);
+		}
+		if (walls.right.getGlobalBounds().intersects(ball.ballShape.getGlobalBounds()))
+		{
+			ball.Bounce(1, walls.right, ball.ballShape);
 		}
 
-		if (ball.getPos().y < 0)
+		//COLLISION - VerticalBarrier
+		if (walls.top.getGlobalBounds().intersects(ball.ballShape.getGlobalBounds()))
 		{
-			ball.Bounce(0);
+			ball.Bounce(0, walls.top, ball.ballShape);
+			//PlaySound
 		}
-
-		if (ball.getPos().y > (WIN_H - 20))
+		if (walls.bottom.getGlobalBounds().intersects(ball.ballShape.getGlobalBounds()))
 		{
-			if (lives > 1)
-			{
-				lives -= 1;
-				ball.Bounce(0);
-			}
-			else
-			{
-				window.close();
-			}
+			ball.Bounce(0, walls.bottom, ball.ballShape);
+			//PlaySound
 		}
 
 		//COLLISION - Player&Ball
 		if (player.player.getGlobalBounds().intersects(ball.ballShape.getGlobalBounds()))
 		{
-			ball.Bounce(0);
+			ball.Bounce(0, player.player, ball.ballShape);
 		}
 
 		//COLLISION - Brick&Ball
@@ -138,14 +172,15 @@ int main()
 		{
 			if (grid[i].rect.getGlobalBounds().intersects(ball.ballShape.getGlobalBounds()) && grid[i].type != 1)
 			{
-				ball.Bounce(0);
+				ball.Bounce(0, grid[i].rect, ball.ballShape);
 				score += 1;
 				ball.ballVelocity = ball.ballVelocity * 1.01f;
 				grid[i].ChangeType();
 				//If Score == max , end game
 			}
 		}
-
+#pragma endregion
+#pragma region InputRepeat
 
 		//Inputs
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) && player.getX() < (border.rect.getPosition().x - player.getWidth() - 10))//(WIN_W - player.getWidth()))
@@ -168,9 +203,8 @@ int main()
 				border.Setup();
 			}*/
 
-
-		
-
+#pragma endregion
+#pragma region Drawing
 		window.clear();
 
 		for (int i = 0; i < gridLoopCount; i++)
@@ -198,26 +232,9 @@ int main()
 		player.drawTo(window);
 		border.drawTo(window);
 		window.display();
+
+#pragma endregion
 	}
 
 	return 0;
 }
-
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
-
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
-
-	/* TEST CODE
-	sf::RectangleShape playerRect;
-	playerRect.setSize(sf::Vector2f(90.0f, 20.0f));
-	playerRect.setFillColor(sf::Color::White);
-	playerRect.setOutlineThickness(1);
-	playerRect.setPosition(sf::Vector2f(100, 750));
-	*/

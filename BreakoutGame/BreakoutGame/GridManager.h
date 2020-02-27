@@ -71,3 +71,29 @@ public:
 
 private:
 };
+
+class invisibleWalls {
+public:
+	sf::RectangleShape top;
+	sf::RectangleShape bottom;
+	sf::RectangleShape left;
+	sf::RectangleShape right;
+	
+	void GameBorder(int w, int h) {
+		
+
+		top.setSize(sf::Vector2f(w, 1));
+		top.setPosition(0, 0);
+		top.setFillColor(sf::Color::Black);
+		bottom.setSize(sf::Vector2f(w, 1));
+		bottom.setPosition(sf::Vector2f(0, h - 1));
+		bottom.setFillColor(sf::Color::Black);
+		left.setSize(sf::Vector2f(1, h));
+		left.setPosition(sf::Vector2f(0, 0));
+		left.setFillColor(sf::Color::Black);
+		right.setSize(sf::Vector2f(1, h));
+		right.setPosition(sf::Vector2f(w - 1, 0));
+		right.setFillColor(sf::Color::Black);
+	}
+private:
+};
