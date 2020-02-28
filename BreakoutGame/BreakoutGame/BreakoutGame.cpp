@@ -35,7 +35,7 @@ int main()
 	BorderSetup border;
 	border.Setup(WIN_H);
 	invisibleWalls walls;
-	walls.GameBorder(WIN_W, WIN_H);
+	walls.GameBorder(border.rect.getPosition().x, WIN_H);
 	UI interface;
 	Player player({ 90.0f, 25.0f }, { sf::Color::White });
 	player.setPos({ (border.getX() / 2.0f - player.getWidth()), (WIN_H - 50.0f) });
@@ -158,7 +158,13 @@ int main()
 		if (walls.bottom.getGlobalBounds().intersects(ball.ballShape.getGlobalBounds()))
 		{
 			ball.Bounce(0, walls.bottom, ball.ballShape);
+			lives -= 1;
 			//PlaySound
+		}
+
+		if (lives < 1)
+		{
+			window.close();			
 		}
 
 		//COLLISION - Player&Ball

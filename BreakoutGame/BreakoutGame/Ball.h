@@ -23,13 +23,13 @@ public:
 			{
 				//right side
 				ballVelocity.y = -ballVelocity.y;
-				ballVelocity.x += 1;
+				ballVelocity.x -= 1;
 			}
 			else
 			{
 				//left side
 				ballVelocity.y = -ballVelocity.y;
-				ballVelocity.x -= 1;
+				ballVelocity.x += 1;
 			}
 
 			break;
